@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mssql-cli
+  name: dig
   labels:
-    app: mssql-cli
+    app: dig
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mssql-cli
+      app: dig
   template:
     metadata:
       labels:
-        app: mssql-cli
+        app: dig
     spec:
       containers:
-      - name: mssql-cli
-        image: mcr.microsoft.com/mssql-tools
-        command: [ "/bin/bash", "-c", "--" ]
+      - name: dig
+        image: sequenceiq/alpine-dig:latest
+        command: [ "/bin/sh", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 80
