@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-cli
+  labels:
+    app: mssql-cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql-cli
+  template:
+    metadata:
+      labels:
+        app: mssql-cli
+    spec:
+      containers:
+      - name: mssql-cli
+        image: mcr.microsoft.com/mssql-tools
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        ports:
+        - containerPort: 80
